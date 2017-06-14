@@ -24,6 +24,7 @@ class LesscFilter extends BaseProcessFilter
     public function filterDump(AssetInterface $asset)
     {
         $pb = $this->createProcessBuilder([$this->lesscBin, '-']);
+        $pb->add('--include-path=' . $asset->getSourceDirectory());
         $proc = $pb->getProcess();
         $proc->setInput($asset->getContent());
         
